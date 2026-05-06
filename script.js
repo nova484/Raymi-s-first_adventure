@@ -90,26 +90,26 @@
       x += w+3+Math.random()*18;
     }
   }
-
-  // ── Input ─────────────────────────────────────────
-  function doJump() {
-    if(state !== 'running') return;
-    if(P.jumps < P.maxJumps) {
-      P.vy = P.jumps === 0 ? -16 : -13;
-      P.jumps++;
-      P.squash = 0.7;
-      P.bodyLean = -0.25;
-      spawnJumpDust();
-    }
+  // ── INPUT — catches ALL touch and click anywhere on screen ──
+function doJump() {
+  if(state !== 'running') return;
+  if(P.jumps < P.maxJumps) {
+    P.vy = P.jumps === 0 ? -16 : -13;
+    P.jumps++;
+    P.squash = 0.7;
+    P.bodyLean = -0.25;
+    spawnJumpDust();
   }
+}
 
-  // Keyboard
-  window.addEventListener('keydown', e => {
-    if(e.code === 'Space' || e.code === 'ArrowUp') {
-      e.preventDefault();
-      doJump();
-    }
-  });
+// Keyboard
+window.addEventListener('keydown', e => {
+  if(e.code === 'Space' || e.code === 'ArrowUp') {
+    e.preventDefault();
+    doJump();
+  }
+});
+  
 
   // Mouse
   canvas.addEventListener('mousedown', e => {
@@ -117,11 +117,17 @@
     doJump();
   });
 
-  // Touch — most reliable method
-  canvas.addEventListener('touchstart', e => {
-    e.preventDefault();
-    doJump();
-  }, {passive: false});
+  // Click anywhere
+window.addEventListener('mousedown', e => {
+  doJump();
+});
+
+// Touch anywhere on screen
+window.addEventListener('touchstart', e => {
+  e.preventDefault();
+  doJump();
+}, { passive: false });
+
 
   // Also attach to the whole wrapper so tapping anywhere works
   document.getElementById('wrapper').addEventListener('touchstart', e => {
