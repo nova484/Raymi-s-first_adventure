@@ -1,1 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap');
 
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #050508;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Share Tech Mono', monospace;
+  touch-action: none;
+}
+
+#wrapper {
+  position: relative;
+  width: min(100vw, 800px);
+  height: min(56.25vw, 420px);
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 1px solid rgba(0,255,255,0.2);
+  box-shadow: 0 0 40px rgba(0,255,255,0.12), 0 0 80px rgba(255,0,255,0.06);
+}
+
+#ui {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+}
+
+#score-display {
+  position: absolute;
+  top: 16px; left: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(20px, 4.5vw, 34px);
+  color: #0ff;
+  text-shadow: 0 0 12px #0ff, 0 0 24px #0ff;
+  letter-spacing: 0.05em;
+}
+
+#hi-display {
+  position: absolute;
+  top: 16px; right: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(13px, 2.8vw, 20px);
+  color: #f0f;
+  text-shadow: 0 0 8px #f0f;
+  letter-spacing: 0.05em;
+}
+
+#combo-display {
+  position: absolute;
+  top: 58px; left: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(14px, 3vw, 24px);
+  color: #ff0;
+  text-shadow: 0 0 10px #ff0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+#tap-hint {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(8px, 1.6vw, 11px);
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+}
+
+#overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5,5,8,0.88);
+  gap: 14px;
+  pointer-events: all;
+}
+
+#overlay h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 10vw, 76px);
+  color: #0ff;
+  text-shadow: 0 0 20px #0ff, 0 0 60px rgba(0,255,255,0.4);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-align: center;
+}
+
+#overlay .subtitle {
+  font-size: clamp(9px, 2vw, 13px);
+  color: #f0f;
+  text-shadow: 0 0 8px #f0f;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+#overlay .instruct {
+  font-size: clamp(9px, 1.8vw, 12px);
+  color: rgba(0,255,255,0.6);
+  letter-spacing: 0.12em;
+  text-align: center;
+  line-height: 2;
+}
+
+#dead-score {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(14px, 3.5vw, 24px);
+  color: #ff0;
+  text-shadow: 0 0 12px #ff0;
+  display: none;
+}
+
+#start-btn {
+  margin-top: 6px;
+  background: transparent;
+  border: 2px solid #0ff;
+  color: #0ff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(16px, 3.5vw, 26px);
+  letter-spacing: 0.2em;
+  padding: 10px 40px;
+  cursor: pointer;
+  text-shadow: 0 0 10px #0ff;
+  box-shadow: 0 0 20px rgba(0,255,255,0.2), inset 0 0 20px rgba(0,255,255,0.06);
+  transition: all 0.2s;
+}
+
+#start-btn:hover,
+#start-btn:active {
+  background: rgba(0,255,255,0.12);
+  box-shadow: 0 0 40px rgba(0,255,255,0.4), inset 0 0 30px rgba(0,255,255,0.15);
+}
